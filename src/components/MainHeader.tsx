@@ -1,5 +1,4 @@
-import episodes from "./episodes.json"
-
+import episodes from "./episodes.json";
 
 interface SearchBarProps {
   searchText: string;
