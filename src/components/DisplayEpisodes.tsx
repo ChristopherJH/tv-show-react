@@ -30,7 +30,7 @@ function DisplayEpisodes(props: SearchBarProps): JSX.Element {
 
   function filterEpisodes() {
     const filteredEpisodes = episodes.filter(episode => 
-      episode.name.slice(0, props.searchText.length).toLowerCase() === props.searchText.toLowerCase()
+      episode.name.toLowerCase().includes(props.searchText.toLowerCase())
       );
     return filteredEpisodes;
   }
