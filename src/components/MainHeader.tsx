@@ -1,4 +1,3 @@
-import { useState } from "react";
 import episodes from "/home/2110-014-cha/Developer/academy/training/tv-show-react/src/episodes.json";
 
 interface SearchBarProps {
@@ -6,15 +5,14 @@ interface SearchBarProps {
   handleSearchText: (searchInput: string) => void;
 }
 
-function MainHeader(): JSX.Element {
-  const [text, setText] = useState("");
+function MainHeader(props: SearchBarProps): JSX.Element {
 
   return (
     <header>
       <h1>Game of Thrones</h1>
       <h2>Episode List</h2> 
-      <SearchBar searchText={text} handleSearchText={setText}/>
-      <p>{text}</p>
+      <SearchBar searchText={props.searchText} handleSearchText={props.handleSearchText}/>
+      <p>{props.searchText}</p>
     </header>
   );
 }
@@ -23,7 +21,7 @@ function SearchBar(props: SearchBarProps): JSX.Element {
   return (
     <>
       <input 
-        type="text" 
+        type="searchText" 
         placeholder="Search" 
         value={props.searchText} 
         onChange={(e) => props.handleSearchText(e.target.value)}
