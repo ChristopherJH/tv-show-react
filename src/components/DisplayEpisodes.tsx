@@ -1,6 +1,6 @@
 import ListElement from "./ListElement";
 import { IEpisode } from "./IEpisode";
-import episodes from "/home/2110-014-cha/Developer/academy/training/tv-show-react/src/episodes.json";
+import episodes from "./episodes.json"
 
 interface SearchBarProps {
   searchText: string;
