@@ -8,13 +8,13 @@ function App(): JSX.Element {
   const [filteredEpNum, setFilteredEpNum] = useState(0);
   return (
     <>
-      <MainHeader 
-        searchText={searchText} 
-        handleSearchText={setSearchText} 
+      <MainHeader
+        searchText={searchText}
+        handleSearchText={setSearchText}
         filteredEpNum={filteredEpNum}
-        />
-      <DisplayEpisodes 
-        searchText={searchText} 
+      />
+      <DisplayEpisodes
+        searchText={searchText}
         filteredEpNum={filteredEpNum}
         handleFilteredEpNum={setFilteredEpNum}
       />

@@ -7,12 +7,15 @@ interface SearchBarProps {
 }
 
 function MainHeader(props: SearchBarProps): JSX.Element {
-
   return (
     <header>
       <h1>Game of Thrones</h1>
-      <h2>Episode List</h2> 
-      <SearchBar searchText={props.searchText} handleSearchText={props.handleSearchText} filteredEpNum={props.filteredEpNum}/>
+      <h2>Episode List</h2>
+      <SearchBar
+        searchText={props.searchText}
+        handleSearchText={props.handleSearchText}
+        filteredEpNum={props.filteredEpNum}
+      />
       <p>{props.searchText}</p>
     </header>
   );
@@ -21,12 +24,13 @@ function MainHeader(props: SearchBarProps): JSX.Element {
 function SearchBar(props: SearchBarProps): JSX.Element {
   return (
     <>
-      <input 
-        type="searchText" 
-        placeholder="Search" 
-        value={props.searchText} 
+      <input
+        type="searchText"
+        placeholder="Search"
+        value={props.searchText}
         onChange={(e) => props.handleSearchText(e.target.value)}
-      /> Showing {props.filteredEpNum}/{episodes.length} episodes
+      />{" "}
+      Showing {props.filteredEpNum}/{episodes.length} episodes
     </>
   );
 }
