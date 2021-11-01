@@ -3,6 +3,7 @@ import episodes from "/home/2110-014-cha/Developer/academy/training/tv-show-reac
 interface SearchBarProps {
   searchText: string;
   handleSearchText: (searchInput: string) => void;
+  filteredEpNum: number;
 }
 
 function MainHeader(props: SearchBarProps): JSX.Element {
@@ -11,7 +12,7 @@ function MainHeader(props: SearchBarProps): JSX.Element {
     <header>
       <h1>Game of Thrones</h1>
       <h2>Episode List</h2> 
-      <SearchBar searchText={props.searchText} handleSearchText={props.handleSearchText}/>
+      <SearchBar searchText={props.searchText} handleSearchText={props.handleSearchText} filteredEpNum={props.filteredEpNum}/>
       <p>{props.searchText}</p>
     </header>
   );
@@ -25,10 +26,7 @@ function SearchBar(props: SearchBarProps): JSX.Element {
         placeholder="Search" 
         value={props.searchText} 
         onChange={(e) => props.handleSearchText(e.target.value)}
-      />
-      <p>
-        Showing {episodes.length} out of {episodes.length} episodes.
-      </p>
+      /> Showing {props.filteredEpNum}/{episodes.length} episodes
     </>
   );
 }

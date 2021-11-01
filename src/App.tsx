@@ -5,11 +5,19 @@ import { useState } from "react";
 
 function App(): JSX.Element {
   const [searchText, setSearchText] = useState("");
+  const [filteredEpNum, setFilteredEpNum] = useState(0);
   return (
     <>
-      <MainHeader searchText={searchText} handleSearchText={setSearchText}/>
-      {/* <h1>{searchText}</h1> */}
-      <DisplayEpisodes searchText={searchText}/>
+      <MainHeader 
+        searchText={searchText} 
+        handleSearchText={setSearchText} 
+        filteredEpNum={filteredEpNum}
+        />
+      <DisplayEpisodes 
+        searchText={searchText} 
+        filteredEpNum={filteredEpNum}
+        handleFilteredEpNum={setFilteredEpNum}
+      />
       <MainFooter />
     </>
   );

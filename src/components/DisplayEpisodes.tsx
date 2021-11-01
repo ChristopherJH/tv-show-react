@@ -4,6 +4,8 @@ import episodes from "/home/2110-014-cha/Developer/academy/training/tv-show-reac
 
 interface SearchBarProps {
   searchText: string;
+  filteredEpNum: number;
+  handleFilteredEpNum: (num: number) => void;
 }
 
 function ObjectToEpisode(episodes: IEpisode): JSX.Element {
@@ -36,6 +38,7 @@ function DisplayEpisodes(props: SearchBarProps): JSX.Element {
   }
 
   const filteredEpisodes = filterEpisodes();
+  props.handleFilteredEpNum(filteredEpisodes.length);
 
   return <main>
     {/* <h1>{props.searchText}</h1> */}
