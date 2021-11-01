@@ -2,6 +2,10 @@ import ListElement from "./ListElement";
 import { IEpisode } from "./IEpisode";
 import episodes from "/home/2110-014-cha/Developer/academy/training/tv-show-react/src/episodes.json";
 
+interface SearchBarProps {
+  searchText: string;
+}
+
 function ObjectToEpisode(episodes: IEpisode): JSX.Element {
     return (
       <ListElement
@@ -22,9 +26,9 @@ function ObjectToEpisode(episodes: IEpisode): JSX.Element {
     );
 }
 
-function DisplayEpisodes(): JSX.Element {
+function DisplayEpisodes(props: SearchBarProps): JSX.Element {
   return <main>
-    {/* <h1>{searchText}</h1> */}
+    <h1>{props.searchText}</h1>
     {episodes.map(ObjectToEpisode)}</main>;
 }
 
