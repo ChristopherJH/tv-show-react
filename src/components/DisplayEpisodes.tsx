@@ -27,9 +27,19 @@ function ObjectToEpisode(episodes: IEpisode): JSX.Element {
 }
 
 function DisplayEpisodes(props: SearchBarProps): JSX.Element {
+
+  function filterEpisodes() {
+    const filteredEpisodes = episodes.filter(episode => 
+      episode.name.slice(0, props.searchText.length).toLowerCase() === props.searchText.toLowerCase()
+      );
+    return filteredEpisodes;
+  }
+
+  const filteredEpisodes = filterEpisodes();
+
   return <main>
-    <h1>{props.searchText}</h1>
-    {episodes.map(ObjectToEpisode)}</main>;
+    {/* <h1>{props.searchText}</h1> */}
+    {filteredEpisodes.map(ObjectToEpisode)}</main>;
 }
 
 export default DisplayEpisodes;
