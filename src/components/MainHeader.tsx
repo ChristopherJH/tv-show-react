@@ -2,18 +2,15 @@ import episodes from "./episodes.json";
 import IEpisode from "./IEpisode";
 import WriteEpisode from "./WriteEpisode";
 
-interface SearchBarProps {
+interface SearchProps {
   searchText: string;
   handleSearchText: (searchInput: string) => void;
   filteredEpNum: number;
-}
-
-interface DropDownProps {
   dropDownSelect: string;
   handleDropDownSelect: (selectInput: string) => void;
 }
 
-function MainHeader(searchProps: SearchBarProps, dropProps: DropDownProps): JSX.Element {
+function MainHeader(searchProps: SearchProps): JSX.Element {
   return (
     <header>
       <h1>Game of Thrones</h1>
@@ -22,10 +19,15 @@ function MainHeader(searchProps: SearchBarProps, dropProps: DropDownProps): JSX.
         searchText={searchProps.searchText}
         handleSearchText={searchProps.handleSearchText}
         filteredEpNum={searchProps.filteredEpNum}
+        dropDownSelect={searchProps.dropDownSelect}
+        handleDropDownSelect={searchProps.handleDropDownSelect}
       />
       <DropDownMenu 
-        dropDownSelect={""}
-        handleDropDownSelect={dropProps.handleDropDownSelect}
+        searchText={searchProps.searchText}
+        handleSearchText={searchProps.handleSearchText}
+        filteredEpNum={searchProps.filteredEpNum}
+        dropDownSelect={searchProps.dropDownSelect}
+        handleDropDownSelect={searchProps.handleDropDownSelect}
       />
     </header>
   );
@@ -33,11 +35,11 @@ function MainHeader(searchProps: SearchBarProps, dropProps: DropDownProps): JSX.
 
 function EpisodeToOption(episode: IEpisode): JSX.Element {
   return (
-    <option value={WriteEpisode(episode)}></option>
+    <option value={WriteEpisode(episode)}>{WriteEpisode(episode)}</option>
   );
 }
 
-function DropDownMenu(props: DropDownProps): JSX.Element {
+function DropDownMenu(props: SearchProps): JSX.Element {
   return (
     <select 
       value={props.dropDownSelect}
@@ -47,7 +49,7 @@ function DropDownMenu(props: DropDownProps): JSX.Element {
   )
 }
 
-function SearchBar(props: SearchBarProps): JSX.Element {
+function SearchBar(props: SearchProps): JSX.Element {
   return (
     <>
       <input

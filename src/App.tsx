@@ -6,7 +6,7 @@ import { useState } from "react";
 function App(): JSX.Element {
   const [searchText, setSearchText] = useState("");
   const [filteredEpNum, setFilteredEpNum] = useState(0);
-  const [dropDownSelect, setDropDownSelect] = useState("");
+  const [dropDownSelect, setDropDownSelect] = useState("Select an episode");
   return (
     <>
       <MainHeader
@@ -20,6 +20,8 @@ function App(): JSX.Element {
         searchText={searchText}
         filteredEpNum={filteredEpNum}
         handleFilteredEpNum={setFilteredEpNum}
+        dropDownSelect={dropDownSelect}
+        dropDownActive={true}
       />
       <MainFooter />
     </>

@@ -2,10 +2,12 @@ import ListElement from "./ListElement";
 import IEpisode from "./IEpisode";
 import episodes from "./episodes.json";
 
-interface SearchBarProps {
+interface SearchProps {
   searchText: string;
   filteredEpNum: number;
-  handleFilteredEpNum: (num: number) => void;
+  handleFilteredEpNum:  (input: number) => void;
+  dropDownSelect: string;
+  dropDownActive: boolean;
 }
 
 function ObjectToEpisode(episodes: IEpisode): JSX.Element {
@@ -28,12 +30,27 @@ function ObjectToEpisode(episodes: IEpisode): JSX.Element {
   );
 }
 
-function DisplayEpisodes(props: SearchBarProps): JSX.Element {
-  function filterEpisodes() {
+function DisplayEpisodes(props: SearchProps): JSX.Element {
+  function filterEpisodes(): IEpisode[] {
+    if (props.dropDownActive) {
+      return filterByDropDown();
+    } else {
+      return filterBySearchBar();
+    }
+  }
+
+  function filterBySearchBar(): IEpisode[] {
     const filteredEpisodes = episodes.filter((episode) =>
-      episode.name.toLowerCase().includes(props.searchText.toLowerCase())
+      episode.name.toLowerCase().includes(props.searchText.toLowerCase()) || episode.summary.toLowerCase().includes(props.searchText.toLowerCase())
     );
     return filteredEpisodes;
+  }
+
+  function filterByDropDown(): IEpisode[] {
+    const filteredEpisodes = episodes.filter((episode) =>
+      props.dropDownSelect.includes(episode.name)
+    );
+  return filteredEpisodes;
   }
 
   const filteredEpisodes = filterEpisodes();
