@@ -2,15 +2,25 @@ import episodes from "./episodes.json";
 import IEpisode from "./IEpisode";
 import WriteEpisode from "./WriteEpisode";
 
-interface SearchProps {
+interface SearchBarProps {
   searchText: string;
   handleSearchText: (searchInput: string) => void;
   filteredEpNum: number;
+}
+
+interface DropDownProps {
   dropDownSelect: string;
   handleDropDownSelect: (selectInput: string) => void;
 }
 
-function MainHeader(searchProps: SearchProps): JSX.Element {
+interface FilterProps {
+  searchBarProps: SearchBarProps;
+  dropDownProps: DropDownProps;
+}
+
+function MainHeader(props: FilterProps): JSX.Element {
+  const searchProps = props.searchBarProps;
+  const dropDownProps = props.dropDownProps;
   return (
     <header>
       <h1>Game of Thrones</h1>
@@ -19,15 +29,10 @@ function MainHeader(searchProps: SearchProps): JSX.Element {
         searchText={searchProps.searchText}
         handleSearchText={searchProps.handleSearchText}
         filteredEpNum={searchProps.filteredEpNum}
-        dropDownSelect={searchProps.dropDownSelect}
-        handleDropDownSelect={searchProps.handleDropDownSelect}
       />
       <DropDownMenu 
-        searchText={searchProps.searchText}
-        handleSearchText={searchProps.handleSearchText}
-        filteredEpNum={searchProps.filteredEpNum}
-        dropDownSelect={searchProps.dropDownSelect}
-        handleDropDownSelect={searchProps.handleDropDownSelect}
+        dropDownSelect={dropDownProps.dropDownSelect}
+        handleDropDownSelect={dropDownProps.handleDropDownSelect}
       />
     </header>
   );
@@ -39,7 +44,7 @@ function EpisodeToOption(episode: IEpisode): JSX.Element {
   );
 }
 
-function DropDownMenu(props: SearchProps): JSX.Element {
+function DropDownMenu(props: DropDownProps): JSX.Element {
   return (
     <select 
       value={props.dropDownSelect}
@@ -49,7 +54,7 @@ function DropDownMenu(props: SearchProps): JSX.Element {
   )
 }
 
-function SearchBar(props: SearchProps): JSX.Element {
+function SearchBar(props: SearchBarProps): JSX.Element {
   return (
     <>
       <input

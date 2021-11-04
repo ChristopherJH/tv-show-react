@@ -7,6 +7,7 @@ function App(): JSX.Element {
   const [searchText, setSearchText] = useState("");
   const [filteredEpNum, setFilteredEpNum] = useState(0);
   const [dropDownSelect, setDropDownSelect] = useState("Select an episode");
+  const [dropDownActive, setDropDownActive] = useState(false);
   return (
     <>
       <MainHeader
