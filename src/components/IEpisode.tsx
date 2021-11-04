@@ -1,4 +1,4 @@
-export interface IEpisode {
+interface IEpisode {
   id: number;
   url: string;
   name: string;
@@ -16,3 +16,5 @@ export interface IEpisode {
   summary: string;
   _links: { self: { href: string } };
 }
+
+export default IEpisode;

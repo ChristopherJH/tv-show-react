@@ -1,5 +1,5 @@
 import ListElement from "./ListElement";
-import { IEpisode } from "./IEpisode";
+import IEpisode from "./IEpisode";
 import episodes from "./episodes.json";
 
 interface SearchBarProps {

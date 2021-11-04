@@ -1,12 +1,10 @@
-import { IEpisode } from "./IEpisode";
+import IEpisode from "./IEpisode";
+import WriteEpisode from "./WriteEpisode";
 
 function ListElement(props: IEpisode): JSX.Element {
   return (
     <section className="episode">
-      <h2 className="description">
-        S0{props.season}E{doubleDigitEpisode(props.number) && "0"}
-        {props.number}: {props.name}
-      </h2>
+      <h2 className="description">{WriteEpisode(props)}</h2>
       <img src={props.image.medium} alt="Preview for episode" />
       <div className="description">
         <h3>Description</h3>
@@ -14,10 +12,6 @@ function ListElement(props: IEpisode): JSX.Element {
       </div>
     </section>
   );
-}
-
-function doubleDigitEpisode(number: number): boolean {
-  return number < 10;
 }
 
 export default ListElement;
