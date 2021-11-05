@@ -1,4 +1,3 @@
-import episodes from "./episodes.json";
 import WriteEpisode from "./WriteEpisode";
 import IEpisode from "./IEpisode";
 import React from "react";
@@ -9,6 +8,7 @@ interface DropDownProps {
   dropDownActive: boolean;
   handleDropDownActive: (input: boolean) => void;
   handleSearchText: (selectInput: string) => void;
+  episodes: IEpisode[];
 }
 
 export default function DropDownMenu(props: DropDownProps): JSX.Element {
@@ -20,7 +20,7 @@ export default function DropDownMenu(props: DropDownProps): JSX.Element {
   return (
     <div className="dropdown">
       <select value={props.dropDownSelect} onChange={(e) => setOption(e)}>
-        {episodes.map(EpisodeToOption)}
+        {props.episodes.map(EpisodeToOption)}
       </select>
       <ResetDropDown
         dropDownSelect={props.dropDownSelect}
@@ -28,6 +28,7 @@ export default function DropDownMenu(props: DropDownProps): JSX.Element {
         dropDownActive={props.dropDownActive}
         handleDropDownActive={props.handleDropDownActive}
         handleSearchText={props.handleSearchText}
+        episodes={props.episodes}
       />
     </div>
   );

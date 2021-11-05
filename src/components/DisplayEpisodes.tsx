@@ -1,6 +1,5 @@
 import ListElement from "./ListElement";
 import IEpisode from "./IEpisode";
-import episodes from "./episodes.json";
 
 interface SearchProps {
   searchText: string;
@@ -8,6 +7,7 @@ interface SearchProps {
   handleFilteredEpNum: (input: number) => void;
   dropDownSelect: string;
   dropDownActive: boolean;
+  episodes: IEpisode[];
 }
 
 function ObjectToEpisode(episodes: IEpisode): JSX.Element {
@@ -40,7 +40,7 @@ function DisplayEpisodes(props: SearchProps): JSX.Element {
   }
 
   function filterBySearchBar(): IEpisode[] {
-    const filteredEpisodes = episodes.filter(
+    const filteredEpisodes = props.episodes.filter(
       (episode) =>
         episode.name.toLowerCase().includes(props.searchText.toLowerCase()) ||
         episode.summary.toLowerCase().includes(props.searchText.toLowerCase())
@@ -49,7 +49,7 @@ function DisplayEpisodes(props: SearchProps): JSX.Element {
   }
 
   function filterByDropDown(): IEpisode[] {
-    const filteredEpisodes = episodes.filter((episode) =>
+    const filteredEpisodes = props.episodes.filter((episode) =>
       props.dropDownSelect.includes(episode.name)
     );
     return filteredEpisodes;

@@ -1,10 +1,11 @@
-import episodes from "./episodes.json";
+import IEpisode from "./IEpisode"
 
 interface SearchBarProps {
   searchText: string;
   handleSearchText: (searchInput: string) => void;
   filteredEpNum: number;
   handleDropDownActive: (input: boolean) => void;
+  episodes: IEpisode[];
 }
 
 function SearchBar(props: SearchBarProps): JSX.Element {
@@ -21,7 +22,7 @@ function SearchBar(props: SearchBarProps): JSX.Element {
         value={props.searchText}
         onChange={(e) => startSearchInput(e)}
       />{" "}
-      Showing {props.filteredEpNum}/{episodes.length} episodes
+      Showing {props.filteredEpNum}/{props.episodes.length} episodes
     </>
   );
 }
