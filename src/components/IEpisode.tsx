@@ -10,7 +10,7 @@ interface IEpisode {
   airstamp: string;
   runtime: number;
   image: {
-    medium: string;
+    medium: string | null;
     original: string;
   };
   summary: string;
