@@ -5,7 +5,6 @@ import React from "react";
 interface DropDownProps {
   dropDownSelect: string;
   handleDropDownSelect: (selectInput: string) => void;
-  dropDownActive: boolean;
   handleDropDownActive: (input: boolean) => void;
   handleSearchText: (selectInput: string) => void;
   episodes: IEpisode[];
@@ -25,13 +24,31 @@ export default function DropDownMenu(props: DropDownProps): JSX.Element {
       <ResetDropDown
         dropDownSelect={props.dropDownSelect}
         handleDropDownSelect={props.handleDropDownSelect}
-        dropDownActive={props.dropDownActive}
         handleDropDownActive={props.handleDropDownActive}
         handleSearchText={props.handleSearchText}
         episodes={props.episodes}
       />
     </div>
   );
+}
+
+interface SeasonProps {
+  season: number;
+  episodes: IEpisode[];
+}
+
+// function FilterBySeason(props: SeasonProps): JSX.Element {
+
+// }
+
+function SeasonToOption(episodes: IEpisode[]){
+  const lastSeasonNum = episodes[-1].season;
+  const optionsArray = []
+  for (let i=1; i<lastSeasonNum+1; i++) {
+    const seasonStr = 'Season'+i.toString()
+    optionsArray.push(<option value={seasonStr}>Season {i}</option>)
+  }
+  return optionsArray;
 }
 
 function EpisodeToOption(episode: IEpisode): JSX.Element {

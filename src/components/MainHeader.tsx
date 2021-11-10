@@ -1,9 +1,9 @@
 function MainHeader(): JSX.Element {
   return (
-    <header>
-      <h1>Game of Thrones</h1>
+    <div className="title-page">
+      <h1>TV Shows</h1>
       <h2>Episode List</h2>
-    </header>
+    </div>
   );
 }
 

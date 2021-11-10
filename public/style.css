@@ -1,11 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
 body {
-  background-color: #dcdde1;
+  background-color: linear-gradient(260deg, #f1f1f1, #d7e1ec);
+  margin: 0;
+  font-family: "Poppins", sans-serif;
 }
 
-header {
+/* Header */
+
+.title-page {
   margin: 10px;
-  width: 100vw;
   padding: 10px;
+  width: 40vw;
+}
+
+.header {
+  display: flex;
+}
+
+.search {
+  min-width: 100px;
+  margin: 50px auto 0px;
+  width: 40vw;
+}
+
+.search p {
+  margin-left: 20px;
+}
+
+.searchbar {
+  position: relative;
+  display: flex;
+}
+
+.search-icon {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  width: 14px;
+}
+
+.clear-icon {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  width: 18px;
+  cursor: pointer;
+}
+
+.search-input {
+  border: white 0px solid;
+  border-radius: 10px;
+  font-size: 16px;
+  height: 25px;
+  width: 100%;
+  padding: 2px 23px 2px 30px;
+  outline: 0;
+  background-color: linear-gradient(315deg, #ffffff, #d7e1ec);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-input:hover {
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-input:focus {
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Episode list */
+
+.episode-list {
+  border: solid black 1px;
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown {
+  margin: 10px;
 }
 
 main {
@@ -16,24 +89,29 @@ main {
 }
 
 .episode {
-  width: 30vw;
-  height: 60vh;
+  min-width: 200px;
+  max-width: 350px;
+  height: 50vh;
   background: #f5f6fa;
   margin: 10px;
+  border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .description {
-  padding: 10px;
+  padding: 5px 10px;
 }
 
-img {
+.episode-image {
+  max-width: 90%;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+/* Footer */
 
 footer {
   width: 100vw;
@@ -42,10 +120,4 @@ footer {
 footer p {
   padding: 10px;
   text-align: center;
-}
-
-input {
-  border-radius: 50px;
-  background: #f5f6fa;
-  box-shadow: inset 20px 20px 60px #dcdde1, inset -20px -20px 60px #ffffff;
 }

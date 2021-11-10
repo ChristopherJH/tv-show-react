@@ -3,7 +3,6 @@ import IEpisode from "./IEpisode";
 
 interface SearchProps {
   searchText: string;
-  filteredEpNum: number;
   handleFilteredEpNum: (input: number) => void;
   dropDownSelect: string;
   dropDownActive: boolean;
@@ -60,7 +59,6 @@ function DisplayEpisodes(props: SearchProps): JSX.Element {
 
   return (
     <main>
-      {/* <h1>{props.searchText}</h1> */}
       {filteredEpisodes.map(ObjectToEpisode)}
     </main>
   );
