@@ -22,6 +22,8 @@ function App(): JSX.Element {
     fetchLink();
   }, []);
 
+  // Buggy function in DropDownMenu.tsx
+
   return (
     <>
       <div className="header">
@@ -39,6 +41,7 @@ function App(): JSX.Element {
             dropDownSelect={dropDownSelect}
             handleDropDownSelect={setDropDownSelect}
             handleDropDownActive={setDropDownActive}
+            dropDownActive={dropDownActive}
             handleSearchText={setSearchText}
             episodes={episodeData}
         />
