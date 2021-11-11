@@ -9,7 +9,9 @@ interface EpisodeNameProps {
 }
 
 function WriteEpisode(props: EpisodeNameProps): string {
-  const episodeString = `S0${props.season}E${doubleDigitEpisode(props.number) ?"0":""}${props.number}: ${props.name}`;
+  const episodeString = `S0${props.season}E${
+    doubleDigitEpisode(props.number) ? "0" : ""
+  }${props.number}: ${props.name}`;
   return episodeString;
 }
 

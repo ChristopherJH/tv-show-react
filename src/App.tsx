@@ -2,53 +2,67 @@ import MainHeader from "./components/MainHeader";
 import DisplayEpisodes from "./components/DisplayEpisodes";
 import MainFooter from "./components/MainFooter";
 import { useEffect, useState } from "react";
-import DropDownMenu from "./components/DropDownMenu";
 import SearchBar from "./components/SearchBar";
 import IEpisode from "./components/IEpisode";
+import SeasonDropDown from "./components/SeasonDropDown";
+import ShowDropDown from "./components/ShowDropDown";
+import tvShows from "./shows.json";
+import ShowProps from "./components/ShowProps";
 
 function App(): JSX.Element {
+  //const [showList, setShowList] = useState<ShowProps[]>(tvShows);
   const [searchText, setSearchText] = useState("");
   const [filteredEpNum, setFilteredEpNum] = useState(0);
-  const [dropDownSelect, setDropDownSelect] = useState("Select an episode");
+  const [filteredSeason, setFilteredSeason] = useState(0);
   const [dropDownActive, setDropDownActive] = useState(false);
-  const [episodeData, setEpisodedata] = useState<IEpisode[]>([])
+  const [episodeData, setEpisodeData] = useState<IEpisode[]>([]);
+  const [showLink, setShowLink] = useState<string>(
+    "https://api.tvmaze.com/shows/82/episodes"
+  );
 
   useEffect(() => {
     const fetchLink = async () => {
-      const response = await fetch("https://api.tvmaze.com/shows/82/episodes");
+      const response = await fetch(showLink);
       const data = await response.json();
-      setEpisodedata(data);
-    }
+      setEpisodeData(data);
+    };
     fetchLink();
-  }, []);
-
-  // Buggy function in DropDownMenu.tsx
+  }, [showLink]);
 
   return (
     <>
       <div className="header">
         <MainHeader />
-        <SearchBar
-          searchText={searchText}
-          handleSearchText={setSearchText}
-          filteredEpNum={filteredEpNum}
-          handleDropDownActive={setDropDownActive}
-          episodes={episodeData}
-        />
+        <div className="search-and-show">
+          <SearchBar
+            searchText={searchText}
+            handleSearchText={setSearchText}
+            filteredEpNum={filteredEpNum}
+            handleDropDownActive={setDropDownActive}
+            episodes={episodeData}
+          />
+        </div>
       </div>
       <div className="episode-list">
-        <DropDownMenu
-            dropDownSelect={dropDownSelect}
-            handleDropDownSelect={setDropDownSelect}
+        <div className="dropdowns">
+          <ShowDropDown
+            setShowLink={setShowLink}
+            setFilteredSeason={setFilteredSeason}
+            setDropDownActive={setDropDownActive}
+          />
+          <SeasonDropDown
+            filteredSeason={filteredSeason}
+            setFilteredSeason={setFilteredSeason}
             handleDropDownActive={setDropDownActive}
             dropDownActive={dropDownActive}
             handleSearchText={setSearchText}
             episodes={episodeData}
-        />
+          />
+        </div>
         <DisplayEpisodes
           searchText={searchText}
           handleFilteredEpNum={setFilteredEpNum}
-          dropDownSelect={dropDownSelect}
+          filteredSeason={filteredSeason}
           dropDownActive={dropDownActive}
           episodes={episodeData}
         />
