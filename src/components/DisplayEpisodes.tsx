@@ -1,48 +1,58 @@
-import ListElement from "./ListElement";
-import { IEpisode } from "./IEpisode";
-import episodes from "./episodes.json";
+import EpisodeCard from "./EpisodeCard";
+import IEpisode from "./IEpisode";
 
-interface SearchBarProps {
+interface SearchProps {
   searchText: string;
-  filteredEpNum: number;
-  handleFilteredEpNum: (num: number) => void;
+  handleFilteredEpNum: (input: number) => void;
+  filteredSeason: number;
+  dropDownActive: boolean;
+  episodes: IEpisode[];
 }
 
-function ObjectToEpisode(episodes: IEpisode): JSX.Element {
-  return (
-    <ListElement
-      id={episodes.id}
-      url={episodes.url}
-      name={episodes.name}
-      season={episodes.season}
-      number={episodes.number}
-      type={episodes.type}
-      airdate={episodes.airdate}
-      airtime={episodes.airtime}
-      airstamp={episodes.airstamp}
-      runtime={episodes.runtime}
-      image={episodes.image}
-      summary={episodes.summary}
-      _links={episodes._links}
-    />
-  );
+interface ObjectToEpisodeProps {
+  episode: IEpisode;
 }
 
-function DisplayEpisodes(props: SearchBarProps): JSX.Element {
-  function filterEpisodes() {
-    const filteredEpisodes = episodes.filter((episode) =>
-      episode.name.toLowerCase().includes(props.searchText.toLowerCase())
+function ObjectToEpisode(props: ObjectToEpisodeProps): JSX.Element {
+  return <EpisodeCard episode={props.episode} />;
+}
+
+function DisplayEpisodes(props: SearchProps): JSX.Element {
+  function filterEpisodes(): IEpisode[] {
+    if (props.dropDownActive) {
+      return filterByDropDown();
+    } else {
+      return filterBySearchBar();
+    }
+  }
+
+  function filterBySearchBar(): IEpisode[] {
+    const filteredEpisodes = props.episodes.filter(
+      (episode) =>
+        episode.name.toLowerCase().includes(props.searchText.toLowerCase()) ||
+        episode.summary.toLowerCase().includes(props.searchText.toLowerCase())
     );
     return filteredEpisodes;
   }
 
+  function filterByDropDown(): IEpisode[] {
+    if (props.filteredSeason !== 0) {
+      const filteredEpisodes = props.episodes.filter(
+        (episode) => props.filteredSeason === episode.season
+      );
+      return filteredEpisodes;
+    }
+    return props.episodes;
+  }
+  console.log("Episodes (inside DisplayEpisodes):", props.episodes);
   const filteredEpisodes = filterEpisodes();
   props.handleFilteredEpNum(filteredEpisodes.length);
 
   return (
     <main>
-      {/* <h1>{props.searchText}</h1> */}
-      {filteredEpisodes.map(ObjectToEpisode)}
+      {filteredEpisodes.map((episode) => (
+        <ObjectToEpisode key={episode.id} episode={episode} />
+      ))}
     </main>
   );
 }

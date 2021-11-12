@@ -1,4 +1,4 @@
-export interface IEpisode {
+interface IEpisode {
   id: number;
   url: string;
   name: string;
@@ -9,10 +9,15 @@ export interface IEpisode {
   airtime: string;
   airstamp: string;
   runtime: number;
+  rating: {
+    average: number;
+  };
   image: {
-    medium: string;
+    medium: string | null;
     original: string;
   };
   summary: string;
   _links: { self: { href: string } };
 }
+
+export default IEpisode;
