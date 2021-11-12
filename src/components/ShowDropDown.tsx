@@ -1,26 +1,42 @@
+import ShowProps from "./ShowProps";
+
 interface ShowDropDownProps {
-  setShowLink: (input: string) => void;
+  showID: string;
+  setShowID: (input: string) => void;
   setFilteredSeason: (input: number) => void;
   setDropDownActive: (input: boolean) => void;
+  tvShows: ShowProps[];
 }
 
 export default function ShowDropDown(props: ShowDropDownProps): JSX.Element {
-  function handleShowChange(e: React.ChangeEvent<HTMLSelectElement>) {
+  function handleShowChange(id: string) {
     props.setDropDownActive(false);
-    props.setShowLink(e.target.value);
+    props.setShowID(id);
     props.setFilteredSeason(0);
   }
 
   return (
     <div className="dropdown">
-      <select onChange={(e) => handleShowChange(e)}>
-        <option value="https://api.tvmaze.com/shows/82/episodes">
-          Game of Thrones
-        </option>
-        <option value="https://api.tvmaze.com/shows/81/episodes">
-          Criminal Minds
-        </option>
+      <select
+        value={props.showID}
+        onChange={(e) => handleShowChange(e.target.value)}
+      >
+        {props.tvShows.map((show) => {
+          return <ShowToOption key={show.id} tvShow={show} />;
+        })}
       </select>
     </div>
+  );
+}
+
+interface ShowToOptionProps {
+  tvShow: ShowProps;
+}
+
+function ShowToOption(props: ShowToOptionProps): JSX.Element {
+  return (
+    <option className="options" value={props.tvShow.id.toString()}>
+      {props.tvShow.name}
+    </option>
   );
 }

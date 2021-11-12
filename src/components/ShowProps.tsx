@@ -6,20 +6,20 @@ export default interface ShowProps {
   language: string;
   genres: string[];
   status: string;
-  runtime: number;
-  averageRuntime: number;
-  premiered: string;
-  ended: string;
-  officialSite: string;
+  runtime: number | null;
+  averageRuntime: number | null;
+  premiered: string | null;
+  ended: string | null;
+  officialSite: string | null;
   schedule: {
     time: string;
     days: string[];
   };
   rating: {
-    average: string | null;
+    average: number | null;
   };
   weight: number;
-  network: {
+  network: null | {
     id: number;
     name: string;
     country: {
@@ -28,10 +28,10 @@ export default interface ShowProps {
       timezone: string;
     };
   };
-  webChannel: {
+  webChannel: null | {
     id: number;
     name: string;
-    country: {
+    country: null | {
       name: string;
       code: string;
       timezone: string;
@@ -40,12 +40,12 @@ export default interface ShowProps {
   dvdCountry: string | null;
   externals: {
     tvrage: number;
-    thetvdb: number;
-    imdb: string;
+    thetvdb: number | null;
+    imdb: string | null;
   };
-  image: {
+  image: null | {
     medium: string | null;
-    original: string;
+    original: string | null;
   };
   summary: string;
   updated: number;
@@ -53,8 +53,5 @@ export default interface ShowProps {
     self: {
       href: string;
     };
-  };
-  previousepisode: {
-    href: string;
   };
 }

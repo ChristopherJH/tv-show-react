@@ -25,7 +25,7 @@ function SearchBar(props: SearchBarProps): JSX.Element {
         <input
           className="search-input"
           type="searchText"
-          placeholder="Search"
+          placeholder="Search for an episode"
           value={props.searchText}
           onChange={(e) => startSearchInput(e)}
         />{" "}

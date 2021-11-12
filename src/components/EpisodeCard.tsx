@@ -6,14 +6,11 @@ interface EpisodeCardProps {
 }
 
 function EpisodeCard(props: EpisodeCardProps): JSX.Element {
-  const [trimmedSummary, summaryWOutTags] = cutDownSummary(
-    props.episode.summary
-  );
   return (
     <section className="episode">
       <img
         src={
-          props.episode.image.medium === null
+          props.episode.image === null
             ? "../images/noImage.jpg"
             : props.episode.image.original
         }
@@ -21,29 +18,38 @@ function EpisodeCard(props: EpisodeCardProps): JSX.Element {
         className="episode-image"
       />
       <div className="description">
-        <h3>{WriteEpisode(props.episode)}</h3>
+        <h3>{cutDownText(WriteEpisode(props.episode), 60, false)}</h3>
         <div className="desc-airdate">
-          <h4>⭐ {props.episode.rating.average}</h4>
+          {props.episode.rating.average !== null ? (
+            <h4>⭐ {props.episode.rating.average}</h4>
+          ) : (
+            <h4>No rating available</h4>
+          )}
           <h4>{props.episode.airdate}</h4>
         </div>
-        <p>
-          {trimmedSummary}
-          {trimmedSummary !== summaryWOutTags && (
-            <span className="expand-summary">...</span>
-          )}
-        </p>
+        {props.episode.summary !== null ? (
+          <p>{cutDownText(props.episode.summary, 200, true)}</p>
+        ) : (
+          <p>No description available.</p>
+        )}
       </div>
     </section>
   );
 }
 
-function cutDownSummary(summary: string): [string, string] {
-  const summaryWOutTags = summary.slice(3, -4);
-  let cutOffSummary = summaryWOutTags.slice(0, 200);
-  if (cutOffSummary.slice(-1) === " ") {
-    cutOffSummary = cutOffSummary.slice(0, -1);
+function cutDownText(text: string, limit: number, tags: boolean): string {
+  if (tags) {
+    text = text.slice(3, -4);
   }
-  return [cutOffSummary, summaryWOutTags];
+  let cutOffText = text.slice(0, limit);
+  if (cutOffText.slice(-1) === " ") {
+    cutOffText = cutOffText.slice(0, -1);
+  }
+  if (cutOffText !== text) {
+    return cutOffText + "...";
+  } else {
+    return cutOffText;
+  }
 }
 
 export default EpisodeCard;

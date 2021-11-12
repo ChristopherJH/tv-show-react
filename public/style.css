@@ -1,9 +1,33 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;900&display=swap");
 
 body {
   background-color: linear-gradient(260deg, #f1f1f1, #d7e1ec);
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+p {
+  font-weight: 200;
+}
+
+h1 {
+  font-weight: 900;
+}
+
+h2 {
+  font-weight: 800;
+}
+
+h3 {
+  font-weight: 700;
+}
+
+h4 {
+  font-weight: 500;
+}
+
+h5 {
+  font-weight: 300;
 }
 
 /* Header */
@@ -15,12 +39,27 @@ body {
 }
 
 .header {
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 1) 60%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  position: sticky;
+  top: 0;
+}
+
+.title-and-search {
   display: flex;
+}
+
+.header h1 {
+  margin: 20px;
 }
 
 .search {
   min-width: 100px;
-  margin: 50px auto 0px;
+  margin: 25px 0px 0px 30px;
   width: 40vw;
 }
 
@@ -71,10 +110,14 @@ body {
 /* Episode list */
 
 .episode-list {
-  border: solid black 1px;
-  border-radius: 10px;
   margin: 10px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dropdowns {
+  display: flex;
+  position: sticky;
+  top: 0;
 }
 
 .dropdown select {
@@ -125,24 +168,37 @@ main {
 .episode {
   min-width: 200px;
   max-width: 350px;
-  height: 50vh;
+  height: 500px;
   background: #f5f6fa;
   margin: 10px;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.episode h3 {
+  font-size: 25px;
+  font-weight: 500;
+  height: 60px;
+  margin: 5px 0px;
+}
+
 .description {
-  padding: 5px 10px;
+  padding: 0px 20px 5px;
+}
+
+.desc-airdate {
+  display: flex;
+  justify-content: space-between;
+  padding: 5 5px;
+  height: 30px;
 }
 
 .episode-image {
+  min-height: 175px;
   max-width: 90%;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 10px auto 0px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* Footer */

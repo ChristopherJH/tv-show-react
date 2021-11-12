@@ -19,7 +19,12 @@ export default function SeasonDropDown(props: DropDownProps): JSX.Element {
     <div className="dropdown">
       <select value={props.filteredSeason} onChange={(e) => setOption(e)}>
         {props.episodes.length !== 0 && (
-          <SeasonToOption episodes={props.episodes} />
+          <>
+            <option value={0} disabled selected hidden>
+              All Seasons
+            </option>
+            <SeasonToOption episodes={props.episodes} />
+          </>
         )}
       </select>
       {props.dropDownActive && (
