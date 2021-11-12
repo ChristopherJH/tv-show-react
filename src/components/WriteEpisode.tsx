@@ -1,6 +1,4 @@
-function doubleDigitNumber(number: number): boolean {
-  return number < 10;
-}
+import { isSingleDigitNumber } from "../utils/isSingleDigitNumber";
 
 interface EpisodeNameProps {
   name: string;
@@ -9,9 +7,9 @@ interface EpisodeNameProps {
 }
 
 function WriteEpisode(props: EpisodeNameProps): string {
-  const episodeString = `S${doubleDigitNumber(props.season) ? "0" : ""}${
+  const episodeString = `S${isSingleDigitNumber(props.season) ? "0" : ""}${
     props.season
-  }E${doubleDigitNumber(props.number) ? "0" : ""}${props.number}: ${
+  }E${isSingleDigitNumber(props.number) ? "0" : ""}${props.number}: ${
     props.name
   }`;
   return episodeString;
